@@ -124,7 +124,7 @@ class calculate:
             print("\n1.Equilateral Triangle"   # all three sides are equal to each other
                   "\n2.Isosceles Triangle"     # two sides are equal to each other
                   "\n3.Right Triangle"         # a triangle with a right angle
-                  "\n4.Normal Triangle(can be any one from the above three)"        # can be one of the above or none of the above
+                  "\n4.Normal Triangle(can be any one from the above three)"        # can be one or none of the above
                   "\n5.Back")           # go back to main menu
 
             while(True):
@@ -234,7 +234,8 @@ class execute:
             calculate().cal()
 
         elif (category == 2):
-            print("\nWe are still working on it,")
+            print("\nWe are still working on it.\n")
+            execute.exe()
 
         elif (category == 3):
             print("\nBye")
