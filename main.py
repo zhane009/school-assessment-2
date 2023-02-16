@@ -1,4 +1,5 @@
 import math
+import os
 
 # declare the functions for all the area and perimeter calculations
 def square(side):
@@ -217,6 +218,10 @@ class calculate:
             print("\nBye\n")
             execute.exe()
 
+        else:
+            print("\nPlease input a valid option")
+            calculate.cal(self)
+
 class execute:
     def exe(self):
         print("1.Calculate the area and the perimeter\n"
@@ -240,6 +245,10 @@ class execute:
         elif (category == 3):
             print("\nBye")
             exit(0)
+
+        else:       # check if the entered value is valid and
+            print("\nPlease input a valid option\n")
+            execute.exe()
 
 
 # execute the class in the main function
