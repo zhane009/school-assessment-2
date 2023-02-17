@@ -1,5 +1,6 @@
 import math
 import os
+import time
 
 # declare the functions for all the area and perimeter calculations
 def square(side):
@@ -7,28 +8,28 @@ def square(side):
     perimeter = side * 4
 
     print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm\n")
+    print("Perimeter is", perimeter, "cm")
 
 def rectangle(side1, side2):
     area = side1 * side2
     perimeter = (side1 * 2) + (side2 * 2)
 
     print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm\n")
+    print("Perimeter is", perimeter, "cm")
 
 def circle(radius):
     area = math.pi * radius * radius
     perimeter = 2 * math.pi * radius
 
     print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm\n")
+    print("Perimeter is", perimeter, "cm")
 
 def equilateralTriangle(side):
     area = 0.25 * (math.sqrt(side * 3)) * (math.sqrt(side)) * (math.sqrt(side)) * (math.sqrt(side))
     perimeter = side * 3
 
     print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm\n")
+    print("Perimeter is", perimeter, "cm")
 
 def isoscelesTriangle(side1And2, side3):
     side1, side2 = side1And2, side1And2
@@ -40,7 +41,7 @@ def isoscelesTriangle(side1And2, side3):
     perimeter = side1 + side2 + side3
 
     print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm\n")
+    print("Perimeter is", perimeter, "cm")
 
 def rightTriangle(side1, side2, side3):
 
@@ -52,7 +53,7 @@ def rightTriangle(side1, side2, side3):
     perimeter = side1 + side2 + side3
 
     print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm\n")
+    print("Perimeter is", perimeter, "cm")
 
 def normalTriangle(side1, side2, side3):
     area = 0.25 * (math.sqrt(side1 + side2 + side3)) \
@@ -63,21 +64,21 @@ def normalTriangle(side1, side2, side3):
     perimeter = side1 + side2 + side3
 
     print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm\n")
+    print("Perimeter is", perimeter, "cm")
 
 def parallelogram(side1, side2, angle):
     area = side1 * side2 * math.sin(math.radians(angle))
     perimeter = (side1 * 2) + (side2 * 2)
 
     print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm\n")
+    print("Perimeter is", perimeter, "cm")
 
 def hexagon(len):
     area = 3 * (math.sqrt(3)) * len * len / 2
     perimeter = len * 6
 
     print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm\n")
+    print("Perimeter is", perimeter, "cm")
 
 # the class that will perform all the main non-math things
 class calculate:
@@ -89,7 +90,7 @@ class calculate:
               "\n4.Triangles"
               "\n5.Parallelograms"
               "\n6.Hexagons"
-              "\n7.Exit")
+              "\n7.Back to main menu")
 
         while(True): # check the input is an integer or not and loop until an integer is entered
             try:
@@ -99,26 +100,57 @@ class calculate:
                 print("Please input a number only")
 
         if (category == 1):
-            side = float(input("\nInput the length of the side in cm : "))  # ask for user to input the value of the side
+            while(True):    # to check whether the input value is positive or not and loop until it is positive
+                while(True):    # to check whether the input value is an integer or not
+                    try:
+                        side = float(input("\nInput the length of the side in cm : "))  # ask for user to input the value of the side
+                        break   # break the loop if there's no error
+                    except:
+                        print("\nPlease input a number only")   # handle the error
 
-            square(side)  # call the function to calculate the area and the perimeter
-
-            calculate.cal(self)  # recursion
+                if (side>0):    # if the value is positive
+                    square(side)  # call the function to calculate the area and the perimeter
+                    calculate.cal(self)  # recursion
+                    break   # break the loop
+                else:
+                    print("\nPlease input a positive value.")   # ask the uesr to try again
 
         elif (category == 2):
-            side1 = float(input("\nInput the length of the first side in cm : "))
-            side2 = float(input("Input the length of the second side in cm : "))
+            while(True):
+                while(True):
+                    try:
+                        side1 = float(input("\nInput the length of the first side in cm : "))
+                        side2 = float(input("Input the length of the second side in cm : "))
+                        break
 
-            rectangle(side1, side2)
+                    except:
+                        print("\nPlease input a number only")
 
-            calculate.cal(self)
+                if not(side1 < 0 or side2 < 0):
+                    rectangle(side1, side2)
+                    calculate.cal(self)
+                    break
+
+                else:
+                    print("\nPlease input positive values only")
+
 
         elif (category == 3):
-            radius = float(input("\nInput the length of the radius in cm : "))
+            while (True):
+                while (True):
+                    try:
+                        radius = float(input("\nInput the length of the radius in cm : "))
+                        break
+                    except:
+                        print("\nPlease input a number only")
 
-            circle(radius)
+                if (radius > 0):
+                    circle(radius)
+                    calculate.cal(self)
+                    break
 
-            calculate.cal(self)
+                else:
+                    print("\nPlease input positive values only")
 
         elif (category == 4):
             # let the user choose one of the triangle types
@@ -136,86 +168,151 @@ class calculate:
                     print("Plese only enter a valid option")
 
             if (type == 1):
-                side = float(input("\nInput the length of the side in cm : "))
-                equilateralTriangle(side)
+                while(True):
+                    while(True):
+                        try:
+                            side = float(input("\nInput the length of the side in cm : "))
+                            break
+                        except:
+                            print("\nPlease input a number only")
 
-                calculate.cal(self)
+                    if (side > 0):
+                        equilateralTriangle(side)
+                        calculate.cal(self)
+                        break
+
+                    else:
+                        print("\nPlease input positive values only.")
 
             elif (type == 2):
-
                 while(True):
-                    side1And2 = float(input("\nInput the length of the two equal sides in cm : "))
-                    side3 = float(input("Input the length of the third side in cm : "))
+                    while(True):
+                        try:
+                            side1And2 = float(input("\nInput the length of the two equal sides in cm : "))
+                            side3 = float(input("Input the length of the third side in cm : "))
+                            break
+                        except:
+                            print("\nPlease input a number only")
 
                     side1, side2 = side1And2, side1And2
-                    if (((side1 + side2) > side3)   # check if the triangle is valid or not
-                            and ((side1 + side3) > side2)
-                            and ((side2 + side3) > side1)):
-                        isoscelesTriangle(side1And2, side3)
-                        break       # loop until a valid triangle is entered
+
+                    if not(side1And2 < 0 or side3 < 0):     # first check if the sides are positive
+                        if (((side1 + side2) > side3)   # check if the triangle is valid or not
+                                and ((side1 + side3) > side2)
+                                and ((side2 + side3) > side1)):
+                            isoscelesTriangle(side1And2, side3)
+                            calculate.cal(self)
+                            break       # loop until a valid triangle is entered
+
+                        else:
+                            print("Your three sides do not make up a valid triangle.\nPlease try again.")   # let the user try again if not valid
 
                     else:
-                        print("Your three sides do not make up a valid triangle.\nPlease try again.")   # let the user try again if not valid
-                calculate.cal(self)
+                        print("\nPlease input positive values only")
 
             elif (type == 3):
-
                 while (True):
-                    side1 = float(input("\nInput the length of the first side in cm : "))
-                    side2= float(input("Input the length of the second side in cm : "))
-                    side3 = float(input("Input the length of the third side in cm : "))
+                    while(True):
+                        try:
+                            side1 = float(input("\nInput the length of the first side in cm : "))
+                            side2= float(input("Input the length of the second side in cm : "))
+                            side3 = float(input("Input the length of the third side in cm : "))
+                            break
+                        except:
+                            print("\nPlease input a number only")
 
-                    if ((((side1 * side1) + (side2 * side2)) == (side3 * side3)) # cheak if the three sides satisfy the Pythagora's Theorem
-                            or (((side1 * side1) + (side3 * side3)) == (side2 * side2))
-                            or (((side3 * side3) + (side2 * side2)) == (side1 * side1))):
-                        rightTriangle(side1, side2, side3) # if yes, calculate the area and the perimeter
-                        break       # loop until the three sides make up a valid right triangle
+
+                    if not(side1 < 0 or side2 < 0 or side3 < 0):
+
+                        if ((((side1 * side1) + (side2 * side2)) == (side3 * side3)) # cheak if the three sides satisfy the Pythagora's Theorem
+                                or (((side1 * side1) + (side3 * side3)) == (side2 * side2))
+                                or (((side3 * side3) + (side2 * side2)) == (side1 * side1))):
+
+                            rightTriangle(side1, side2, side3)
+                            calculate.cal(self)# if yes, calculate the area and the perimeter
+                            break       # loop until the three sides make up a valid right triangle
+
+                        else:
+                            print("\nYour three sides do not make up a valid triangle.\nPlease try again.") # if not, ask the user to input again
 
                     else:
-                        print("Your three sides do not make up a valid triangle.\nPlease try again.") # if not, ask the user to input again
+                        print("\nPlease input positive values only.")
 
-                calculate.cal(self)
 
             elif (type == 4):
-
                 while (True):
-                    side1 = float(input("\nInput the length of the first side in cm : "))
-                    side2 = float(input("Input the length of the second side in cm : "))
-                    side3 = float(input("Input the length of the third side in cm : "))
+                    while (True):
+                        try:
+                            side1 = float(input("\nInput the length of the first side in cm : "))
+                            side2 = float(input("Input the length of the second side in cm : "))
+                            side3 = float(input("Input the length of the third side in cm : "))
+                            break
+                        except:
+                            print("\nPlease input a number only")
 
-                    if (((side1 + side2) > side3) # check if the three sides make up a valid triangle
-                            and ((side1 + side3) > side2)
-                            and ((side2 + side3) > side1)):
-                        normalTriangle(side1, side2, side3) # if yes, calculate the area and the perimeter
-                        break       # loop until the three sides make up a valid triangle
+                    if not (side1 < 0 or side2 < 0 or side3 < 0):
+
+                        if (((side1 + side2) > side3) # check if the three sides make up a valid triangle
+                                and ((side1 + side3) > side2)
+                                and ((side2 + side3) > side1)):
+                            normalTriangle(side1, side2, side3) # if yes, calculate the area and the perimeter
+                            calculate.cal(self)
+                            break       # loop until the three sides make up a valid triangle
+                        else:
+                            print("\nThe three sides you entered do not make up a valid triangle.\nPlease try again.") # if not, ask the user to input again
 
                     else:
-                        print("The three sides you entered do not make up a valid triangle.\nPlease try again.") # if not, ask the user to input again
-
-                calculate.cal(self)
+                        print("\nPlease input positive values only.")
 
             elif (type == 5):
                 print("\n")         # for some separation
                 calculate.cal(self)
 
+            else:
+                print("\nPlease input a valid option only.")
+
         elif (category == 5):
-            side1 = float(input("\nInput the length of the first side in cm : "))
-            side2 = float(input("Input the length of the second side in cm : "))
-            angle = float(input("Input the degree of the angle between the two sides : "))
+            while (True):
+                while(True):
+                    try:
+                        side1 = float(input("\nInput the length of the first side in cm : "))
+                        side2 = float(input("Input the length of the second side in cm : "))
+                        angle = float(input("Input the degree of the angle between the two sides in degrees : "))
+                        break
+                    except:
+                        print("\nPlease input a number only")
 
-            parallelogram(side1, side2, angle)
+                if not (side1 < 0 or side2 < 0 or angle < 0):
+                    if (angle > 180):
+                        print("\nYour angle cannot be greater than 180 degrees")
 
-            calculate.cal(self)
+                    else:
+                        parallelogram(side1, side2, angle)
+                        calculate.cal(self)
+                        break
+
+                else:
+                    print("\nPlease input positive values only")
 
         elif (category == 6):
-            side = float(input("\nInput the length of the side in cm : "))
+            while (True):
+                while (True):
+                    try:
+                        side = float(input("\nInput the length of the side in cm : "))
+                        break
+                    except:
+                        print("\nPlease input a number only")
 
-            hexagon(side)
-
-            calculate.cal(self)
+                if (side > 0):
+                    hexagon(side)
+                    calculate.cal(self)
+                    break
+                else:
+                    print("\nPlease input positive values only")
 
         elif (category == 7):
-            print("\nBye\n")
+            print("\nGoing back to main menu\n")
+            time.sleep(1)
             execute.exe()
 
         else:
