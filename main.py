@@ -1,6 +1,7 @@
 import math
 import os
 import time
+import turtle
 
 # declare the functions for all the area and perimeter calculations
 def square(side):
@@ -73,12 +74,13 @@ def parallelogram(side1, side2, angle):
     print("Area is", round(area, 3), "cm^2")
     print("Perimeter is", perimeter, "cm")
 
-def hexagon(len):
-    area = 3 * (math.sqrt(3)) * len * len / 2
-    perimeter = len * 6
+def hexagon(side):
+    area = 3 * (math.sqrt(3)) * side * side / 2
+    perimeter = side * 6
 
     print("Area is", round(area, 3), "cm^2")
     print("Perimeter is", perimeter, "cm")
+
 
 # the class that will perform all the main non-math things
 class calculate:
@@ -319,10 +321,223 @@ class calculate:
             print("\nPlease input a valid option")
             calculate.cal(self)
 
+class draw2d():
+
+    def rectangle(self):
+        side1 = int(input("\ninput the height of the rectangle : "))
+        side2 = int(input("input the length of the rectangle : "))
+        print("\n")
+        i = 0
+        n = 0
+        line = ""
+        while (i < side1):
+            while (n < side2):
+                if ((i == 0) or (i == side1 -1)):
+                    line += "*  "
+
+                elif ((n == 0) or (n == side2 - 1)):
+                    line += "*  "
+
+                else:
+                    line += "   "
+                n += 1
+            n = 0
+            i += 1
+            print(line)
+            line = ""
+
+    def square(self):
+        side = int(input("\ninput the side of the square : "))
+        print("\n")
+        i = 0
+        n = 0
+        line = ""
+        while (i < side):
+            while (n < side):
+                if ((i == 0) or (i == side - 1)):
+                    line += "*  "
+
+                elif ((n == 0) or (n == side - 1)):
+                    line += "*  "
+
+                else:
+                    line += "   "
+
+                n += 1
+            n = 0
+            i += 1
+            print(line)
+            line = ""
+
+    def triangle(self):
+        height = int(input("\ninput the height of the triangle : "))
+        print("\n")
+        i = height
+        n = height
+        j = 0
+        line = ""
+
+        while (i > 0):
+            while (n > i):
+                line += "   "
+                n -= 1
+
+            while (j < i):
+                if (i == height):
+                    line += "#  "
+
+                elif ((j == 0) or (j == i - 1)):
+                    line += "#  "
+
+                else:
+                    line += "   "
+                j += 1
+
+            print(line)
+            line = ""
+            i -= 1
+            n = height
+            j = 0
+
+
+    def parallelogram(self):
+        side1 = int(input("\ninput the height of the parallelogram : "))
+        side2 = int(input("input the length of the parallelogram : "))
+        i = 0
+        j = 0
+        n = side1
+        k = 0
+        m = side1
+        line = ""
+
+
+        while (i < side1):
+            while (n > 0):
+                while (k < n):
+                    line += "   "
+                    k += 1
+                n -= 1
+            while (j < side2):
+                if (i == 0) or (i == side1 - 1):
+                    line += "#  "
+
+                elif (j == 0) or (j == side2 - 1):
+                    line += "#  "
+
+                else:
+                    line += "   "
+                j += 1
+
+            print(line)
+            line = ""
+            j = 0
+            i += 1
+            n = side1 - i
+            k = 0
+
+    def hexagon(self):
+        side = int(input("\ninput the side of the hexagon : "))
+        print("\n")
+        i = 0
+        j = side
+        n = side
+        if (side > 4):
+            s = (side * 2) + (side - 4)
+        elif (side < 4):
+            s = (side * 2) - (4 - side)
+        else:
+            s = (side * 2)
+        line = ""
+
+        while (i < side):
+            while (j > i):
+                line += "   "
+                j -= 1
+
+            while (n > 0):
+                if (i == 0):
+                    line += "*  "
+
+                elif (n == 1) or (n == (side) + (2 * i)):
+                    line += "*  "
+
+                else:
+                    line += "   "
+                n -= 1
+
+            i += 1
+            j = side
+            n = (side) + (2 * i)
+            print(line)
+            line = ""
+
+        for m in range(1, side):
+            for h in range(0, m + 1):
+                line += "   "
+
+            for k in range(0, s):
+                if (k == 0) or (k == s - 1):
+                    line += "*  "
+
+                elif (m == side - 1):
+                    line += "*  "
+
+                else:
+                    line += "   "
+
+            print(line)
+            line = ""
+            s -= 2
+
+    def draw(self):
+        print("\n1.Squres"  # let the user choose one of the shapes
+              "\n2.Rectangles"
+              "\n3.Circles"
+              "\n4.Triangles"
+              "\n5.Parallelograms"
+              "\n6.Hexagons"
+              "\n7.Back to main menu")
+
+        while (True):
+
+            category = int(input("Please select a shape : "))
+
+            if (category == 1):
+                draw2d.square(self)
+                break
+
+            elif (category == 2):
+                draw2d.rectangle(self)
+                break
+
+            elif (category == 3):
+                print("We are still working on it")
+                break
+
+            elif (category == 4):
+                draw2d.triangle(self)
+                break
+
+            elif (category == 5):
+                draw2d.parallelogram(self)
+                break
+
+            elif (category == 6):
+                draw2d.hexagon(self)
+                break
+
+            elif (category == 7):
+                execute.exe()
+                break
+
+            else:
+                print("Please input a valid option.\n")
+
+
 class execute:
     def exe(self):
-        print("1.Calculate the area and the perimeter\n"
-              "2.Draw 3D shapes\n"
+        print("\n1.Calculate the area and the perimeter\n"
+              "2.Draw 2D and 3D shapes\n"
               "3.Exit\n")
 
         while (True):  # check the input is an integer or not and loop until an integer is entered
@@ -336,8 +551,7 @@ class execute:
             calculate().cal()
 
         elif (category == 2):
-            print("\nWe are still working on it.\n")
-            execute.exe()
+            draw2d.draw(self)
 
         elif (category == 3):
             print("\nBye")
@@ -352,5 +566,3 @@ class execute:
 if __name__ == "__main__":
     execute = execute()
     execute.exe()
-
-
