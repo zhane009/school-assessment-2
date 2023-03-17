@@ -1,15 +1,16 @@
 import math
 import os
 import time
-import turtle
+
 # menu = the main menu that the user chooses as the program is required to loop based on what the user chooses
 menu = 0
+
 # declare the functions for all the area and perimeter calculations
 def square(side):       # the functio that will calculate the area and the perimeter of the square
     area = side * side
     perimeter = side * 4
 
-    if (menu == 3):
+    if (menu == 3):     # if this is for compound shapes, don't print but return
         return [area, perimeter]
 
     else:
@@ -121,14 +122,46 @@ def hexagon(side):      # the functio that will calculate the area and the perim
         print("Area is", round(area, 3), "cm^2")
         print("Perimeter is", perimeter, "cm")
 
+def squareCube(side):
+    area = 6 * side * side
+    volume = side * side * side
+
+    print("The surface area of the cube is", round(area, 3), "cm^2")
+    print("The volume of the cube is", round(volume, 3), "cm^3")
+
+def rectangleCube(length, height, thickness):
+    area = (2 * length * height) + (2 * height * thickness) + (2 * length * thickness)
+    volume = length * height * thickness
+
+    print("The surface area of the cube is", round(area, 3), "cm^2")
+    print("The volume of the cube is", round(volume, 3), "cm^3")
+
+def sphere(raduis):
+    area = 4 * math.pi * raduis * raduis
+    volume = 4 / 3 *  math.pi * raduis * raduis * raduis
+
+    print("The surface area of the sphere is", round(area, 3), "cm^2")
+    print("The volume of the sphere is", round(volume, 3), "cm^3")
+
+def cylinder(radius, height):
+    area = (2 * math.pi * radius * radius) + (2 * math.pi * radius * height)
+    volume = math.pi * radius * radius * height
+
+    print("The surface area of the cylinder is", round(area, 3), "cm^2")
+    print("The volume of the cylinder is", round(volume, 3), "cm^3")
+
+def pyramid(base, height, one_face_length):
+    area = (2 * base * one_face_length) + (base * base)
+    volume = 1 / 3 * base * base * height
+
+    print("The surface area of the pyramid is", round(area, 3), "cm^2")
+    print("The volume of the pyramid is", round(volume, 3), "cm^3")
+
 
 # the class that will perform all the main non-math things
 class calculate:
 
-    def recurse(self):
-        calculate.cal(self)
-
-    def cal(self):
+    def cal2d(self):
         print("\n1.Squres"    # let the user choose one of the shapes
               "\n2.Rectangles"
               "\n3.Circles"
@@ -159,7 +192,7 @@ class calculate:
 
                     else:
                         square(side)        # else just print
-                        calculate.cal(self)  # recursion
+                        calculate.cal2d(self)  # recursion
                         break   # break the loop
                 else:
                     print("\nPlease input a positive value.")   # ask the uesr to try again
@@ -181,7 +214,7 @@ class calculate:
 
                     else:
                         rectangle(side1, side2)
-                        calculate.cal(self)
+                        calculate.cal2d(self)
                         break
 
                 else:
@@ -203,7 +236,7 @@ class calculate:
 
                     else:
                         circle(radius)
-                        calculate.cal(self)
+                        calculate.cal2d(self)
                         break
 
                 else:
@@ -239,7 +272,7 @@ class calculate:
 
                         else:
                             equilateralTriangle(side)
-                            calculate.cal(self)
+                            calculate.cal2d(self)
                             break
 
                     else:
@@ -266,7 +299,7 @@ class calculate:
 
                             else:
                                 isoscelesTriangle(side1And2, side3)
-                                calculate.cal(self)
+                                calculate.cal2d(self)
                                 break       # loop until a valid triangle is entered
 
                         else:
@@ -299,7 +332,7 @@ class calculate:
 
                             else:
                                 rightTriangle(side1, side2, side3)
-                                calculate.cal(self)     # if yes, calculate the area and the perimeter
+                                calculate.cal2d(self)  # if yes, calculate the area and the perimeter
                                 break       # loop until the three sides make up a valid right triangle
 
                         else:
@@ -325,7 +358,7 @@ class calculate:
                                 and ((side1 + side3) > side2)
                                 and ((side2 + side3) > side1)):
                             return normalTriangle(side1, side2, side3) # if yes, calculate the area and the perimeter
-                            calculate.cal(self)
+                            calculate.cal2d(self)
                             break       # loop until the three sides make up a valid triangle
                         else:
                             print("\nThe three sides you entered do not make up a valid triangle.\nPlease try again.") # if not, ask the user to input again
@@ -335,7 +368,7 @@ class calculate:
 
             elif (type == 5):
                 print("\n")         # for some separation
-                calculate.cal(self)
+                calculate.cal2d(self)
 
             else:
                 print("\nPlease input a valid option only.")
@@ -361,7 +394,7 @@ class calculate:
 
                         else:
                             parallelogram(side1, side2, angle)
-                            calculate.cal(self)
+                            calculate.cal2d(self)
                             break
 
                 else:
@@ -382,7 +415,7 @@ class calculate:
 
                     else:
                         hexagon(side)
-                        calculate.cal(self)
+                        calculate.cal2d(self)
                         break
                 else:
                     print("\nPlease input positive values only")
@@ -394,7 +427,126 @@ class calculate:
 
         else:
             print("\nPlease input a valid option")
-            calculate.cal(self)
+            calculate.cal2d(self)
+
+
+    def cal3d(self):
+        print("1. Square Cube\n"
+              "2. Rectangle Cube\n"
+              "3. Sphere\n"
+              "4. Cylinder\n"
+              "5. Pyramid\n"
+              "6. Back to main menu.\n")
+
+        while (True):
+            try:
+                category = int(input("Please choose a shape: "))
+                break
+
+            except:
+                print("Please input a number only\n")
+
+        if (category == 1):
+            while(True):
+                while(True):
+                    try:
+                        side = float(input("Input the side of the square cube: "))
+                        break
+
+                    except:
+                        print("Please input a number only.\n")
+
+                if (side > 0):
+                    squareCube(side)
+                    break
+
+                else:
+                    print("The value(s) cannot be negative.\n")
+
+
+        elif (category == 2):
+            while (True):
+                while (True):
+                    try:
+                        length = float(input("Input the length of the rectangle cube: "))
+                        height = float(input("Input the height of the rectangle cube: "))
+                        thickness = float(input("Input the thickness of the rectangle cube: "))
+                        break
+
+                    except:
+                        print("Please input a number only.\n")
+
+                if (length > 0 and height > 0 and thickness > 0):
+                    rectangleCube(length, height, thickness)
+                    break
+
+                else:
+                    print("The value(s) cannot be negative.\n")
+
+        elif (category == 3):
+            while (True):
+                while (True):
+                    try:
+                        radius = float(input("Input the radius of the sphere: "))
+                        break
+
+                    except:
+                        print("Please input a number only.\n")
+
+                if (radius > 0):
+                    sphere(radius)
+                    break
+
+                else:
+                    print("The value(s) cannot be negative.\n")
+
+        elif (category == 4):
+            while (True):
+                while (True):
+                    try:
+                        radius = float(input("Input the radius of the cylinder: "))
+                        height = float(input("Input the height of the cylinder: "))
+                        break
+
+                    except:
+                        print("Please input a number only.\n")
+
+                if (radius > 0 and height > 0):
+                    cylinder(radius, height)
+                    break
+
+                else:
+                    print("The value(s) cannot be negative.\n")
+
+        elif (category == 5):
+            while (True):
+                while (True):
+                    try:
+                        base = float(input("Input the base of the pyramid: "))
+                        height = float(input("Input the height of the pyramid: "))
+                        one_face_length = float(input("Input the length of one face of the pyramid: "))
+                        break
+
+                    except:
+                        print("Please input a number only.\n")
+
+                if (base > 0 and height > 0 and one_face_length > 0):
+                    pyramid(base, height, one_face_length)
+                    break
+
+                else:
+                    print("The value(s) cannot be negative.\n")
+
+        elif (category == 6):
+            print("Going back to main menu.....")
+            time.sleep(1)
+            execute.exe()
+
+        else:
+            print("Please input a valid number.\n")
+            calculate.cal3d(self)
+
+
 
 class draw2d():     # the class that will perform the drawing of 2D shapes
 
@@ -637,7 +789,7 @@ class compound():
         total_parameter = 0
 
         for i in range(2):      # there will be only two times as it is only a two-compound
-            lst = calculate.cal(self)
+            lst = calculate.cal2d(self)
             for n in range(len(lst)):
                 if (n == 0):
                     total_area += lst[n]        # first one is the area
@@ -666,7 +818,7 @@ class execute:
                 print("Please input a number only")
 
         if (menu == 1):
-            calculate().cal()
+            calculate().cal2d()
 
         elif (menu == 2):
             draw2d.draw(self)
@@ -674,6 +826,10 @@ class execute:
 
         elif (menu == 3):
             compound.compound_calculate(self)
+            exit(0)
+
+        elif (menu == 4):
+            calculate.cal3d(self)
             exit(0)
 
         elif (menu == 5):
