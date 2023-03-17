@@ -9,37 +9,46 @@ def square(side):       # the functio that will calculate the area and the perim
     area = side * side
     perimeter = side * 4
 
-    print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm")
+    if (menu == 3):
+        return [area, perimeter]
 
-    return [area, perimeter]
+    else:
+        print("Area is", round(area, 3), "cm^2")
+        print("Perimeter is", perimeter, "cm")
+
 
 def rectangle(side1, side2):        # the functio that will calculate the area and the perimeter of the rectangle
     area = side1 * side2
     perimeter = (side1 * 2) + (side2 * 2)
 
-    print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm")
+    if (menu == 3):
+        return [area, perimeter]
 
-    return [area, perimeter]
+    else:
+        print("Area is", round(area, 3), "cm^2")
+        print("Perimeter is", perimeter, "cm")
 
 def circle(radius):     # the functio that will calculate the area and the perimeter of the circle
     area = math.pi * radius * radius
     perimeter = 2 * math.pi * radius
 
-    print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm")
+    if (menu == 3):
+        return [area, perimeter]
 
-    return [area, perimeter]
+    else:
+        print("Area is", round(area, 3), "cm^2")
+        print("Perimeter is", perimeter, "cm")
 
 def equilateralTriangle(side):      # the functio that will calculate the area and the perimeter of the equilateral triangle
     area = 0.25 * (math.sqrt(side * 3)) * (math.sqrt(side)) * (math.sqrt(side)) * (math.sqrt(side))
     perimeter = side * 3
 
-    print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm")
+    if (menu == 3):
+        return [area, perimeter]
 
-    return [area, perimeter]
+    else:
+        print("Area is", round(area, 3), "cm^2")
+        print("Perimeter is", perimeter, "cm")
 
 def isoscelesTriangle(side1And2, side3):        # the function that will calculate the area and the perimeter of the iscoceles triangle
     side1, side2 = side1And2, side1And2
@@ -50,10 +59,13 @@ def isoscelesTriangle(side1And2, side3):        # the function that will calcula
            * (math.sqrt(-side1 + side2 + side3))
     perimeter = side1 + side2 + side3
 
-    print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm")
+    if (menu == 3):
+        return [area, perimeter]
 
-    return [area, perimeter]
+    else:
+        print("Area is", round(area, 3), "cm^2")
+        print("Perimeter is", perimeter, "cm")
+
 
 def rightTriangle(side1, side2, side3):     # the functio that will calculate the area and the perimeter of the right triangle
 
@@ -64,10 +76,13 @@ def rightTriangle(side1, side2, side3):     # the functio that will calculate th
 
     perimeter = side1 + side2 + side3
 
-    print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm")
+    if (menu == 3):
+        return [area, perimeter]
 
-    return [area, perimeter]
+    else:
+        print("Area is", round(area, 3), "cm^2")
+        print("Perimeter is", perimeter, "cm")
+
 
 def normalTriangle(side1, side2, side3):        # the functio that will calculate the area and the perimeter of the normal triangle
     area = 0.25 * (math.sqrt(side1 + side2 + side3)) \
@@ -77,28 +92,34 @@ def normalTriangle(side1, side2, side3):        # the functio that will calculat
 
     perimeter = side1 + side2 + side3
 
-    print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm")
+    if (menu == 3):
+        return [area, perimeter]
 
-    return [area, perimeter]
+    else:
+        print("Area is", round(area, 3), "cm^2")
+        print("Perimeter is", perimeter, "cm")
 
 def parallelogram(side1, side2, angle):     # the functio that will calculate the area and the perimeter of the parallelogram
     area = side1 * side2 * math.sin(math.radians(angle))
     perimeter = (side1 * 2) + (side2 * 2)
 
-    print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm")
+    if (menu == 3):
+        return [area, perimeter]
 
-    return [area, perimeter]
+    else:
+        print("Area is", round(area, 3), "cm^2")
+        print("Perimeter is", perimeter, "cm")
 
 def hexagon(side):      # the functio that will calculate the area and the perimeter of the hexagon
     area = 3 * (math.sqrt(3)) * side * side / 2
     perimeter = side * 6
 
-    print("Area is", round(area, 3), "cm^2")
-    print("Perimeter is", perimeter, "cm")
+    if (menu == 3):
+        return [area, perimeter]
 
-    return [area, perimeter]
+    else:
+        print("Area is", round(area, 3), "cm^2")
+        print("Perimeter is", perimeter, "cm")
 
 
 # the class that will perform all the main non-math things
