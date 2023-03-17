@@ -2,37 +2,46 @@ import math
 import os
 import time
 import turtle
-
+# menu = the main menu that the user chooses as the program is required to loop based on what the user chooses
+menu = 0
 # declare the functions for all the area and perimeter calculations
-def square(side):
+def square(side):       # the functio that will calculate the area and the perimeter of the square
     area = side * side
     perimeter = side * 4
 
     print("Area is", round(area, 3), "cm^2")
     print("Perimeter is", perimeter, "cm")
 
-def rectangle(side1, side2):
+    return [area, perimeter]
+
+def rectangle(side1, side2):        # the functio that will calculate the area and the perimeter of the rectangle
     area = side1 * side2
     perimeter = (side1 * 2) + (side2 * 2)
 
     print("Area is", round(area, 3), "cm^2")
     print("Perimeter is", perimeter, "cm")
 
-def circle(radius):
+    return [area, perimeter]
+
+def circle(radius):     # the functio that will calculate the area and the perimeter of the circle
     area = math.pi * radius * radius
     perimeter = 2 * math.pi * radius
 
     print("Area is", round(area, 3), "cm^2")
     print("Perimeter is", perimeter, "cm")
 
-def equilateralTriangle(side):
+    return [area, perimeter]
+
+def equilateralTriangle(side):      # the functio that will calculate the area and the perimeter of the equilateral triangle
     area = 0.25 * (math.sqrt(side * 3)) * (math.sqrt(side)) * (math.sqrt(side)) * (math.sqrt(side))
     perimeter = side * 3
 
     print("Area is", round(area, 3), "cm^2")
     print("Perimeter is", perimeter, "cm")
 
-def isoscelesTriangle(side1And2, side3):
+    return [area, perimeter]
+
+def isoscelesTriangle(side1And2, side3):        # the function that will calculate the area and the perimeter of the iscoceles triangle
     side1, side2 = side1And2, side1And2
 
     area = 0.25 * (math.sqrt(side1 + side2 + side3)) \
@@ -44,7 +53,9 @@ def isoscelesTriangle(side1And2, side3):
     print("Area is", round(area, 3), "cm^2")
     print("Perimeter is", perimeter, "cm")
 
-def rightTriangle(side1, side2, side3):
+    return [area, perimeter]
+
+def rightTriangle(side1, side2, side3):     # the functio that will calculate the area and the perimeter of the right triangle
 
     area = 0.25 * (math.sqrt(side1 + side2 + side3)) \
            * (math.sqrt(side1 + side2 - side3)) \
@@ -56,7 +67,9 @@ def rightTriangle(side1, side2, side3):
     print("Area is", round(area, 3), "cm^2")
     print("Perimeter is", perimeter, "cm")
 
-def normalTriangle(side1, side2, side3):
+    return [area, perimeter]
+
+def normalTriangle(side1, side2, side3):        # the functio that will calculate the area and the perimeter of the normal triangle
     area = 0.25 * (math.sqrt(side1 + side2 + side3)) \
                * (math.sqrt(side1 + side2 - side3)) \
                * (math.sqrt(side1 - side2 + side3)) \
@@ -67,23 +80,32 @@ def normalTriangle(side1, side2, side3):
     print("Area is", round(area, 3), "cm^2")
     print("Perimeter is", perimeter, "cm")
 
-def parallelogram(side1, side2, angle):
+    return [area, perimeter]
+
+def parallelogram(side1, side2, angle):     # the functio that will calculate the area and the perimeter of the parallelogram
     area = side1 * side2 * math.sin(math.radians(angle))
     perimeter = (side1 * 2) + (side2 * 2)
 
     print("Area is", round(area, 3), "cm^2")
     print("Perimeter is", perimeter, "cm")
 
-def hexagon(side):
+    return [area, perimeter]
+
+def hexagon(side):      # the functio that will calculate the area and the perimeter of the hexagon
     area = 3 * (math.sqrt(3)) * side * side / 2
     perimeter = side * 6
 
     print("Area is", round(area, 3), "cm^2")
     print("Perimeter is", perimeter, "cm")
 
+    return [area, perimeter]
+
 
 # the class that will perform all the main non-math things
 class calculate:
+
+    def recurse(self):
+        calculate.cal(self)
 
     def cal(self):
         print("\n1.Squres"    # let the user choose one of the shapes
@@ -111,9 +133,13 @@ class calculate:
                         print("\nPlease input a number only")   # handle the error
 
                 if (side>0):    # if the value is positive
-                    square(side)  # call the function to calculate the area and the perimeter
-                    calculate.cal(self)  # recursion
-                    break   # break the loop
+                    if (menu == 3):     # if what user wants to do is compound shapes
+                        return square(side)  # call the function to calculate the area and the perimeter and return them
+
+                    else:
+                        square(side)        # else just print
+                        calculate.cal(self)  # recursion
+                        break   # break the loop
                 else:
                     print("\nPlease input a positive value.")   # ask the uesr to try again
 
@@ -129,9 +155,13 @@ class calculate:
                         print("\nPlease input a number only")
 
                 if not(side1 < 0 or side2 < 0):
-                    rectangle(side1, side2)
-                    calculate.cal(self)
-                    break
+                    if (menu == 3):
+                        return rectangle(side1, side2)
+
+                    else:
+                        rectangle(side1, side2)
+                        calculate.cal(self)
+                        break
 
                 else:
                     print("\nPlease input positive values only")
@@ -147,9 +177,13 @@ class calculate:
                         print("\nPlease input a number only")
 
                 if (radius > 0):
-                    circle(radius)
-                    calculate.cal(self)
-                    break
+                    if (menu == 3):
+                        return circle(radius)
+
+                    else:
+                        circle(radius)
+                        calculate.cal(self)
+                        break
 
                 else:
                     print("\nPlease input positive values only")
@@ -179,9 +213,13 @@ class calculate:
                             print("\nPlease input a number only")
 
                     if (side > 0):
-                        equilateralTriangle(side)
-                        calculate.cal(self)
-                        break
+                        if (menu == 3):
+                            return equilateralTriangle(side)
+
+                        else:
+                            equilateralTriangle(side)
+                            calculate.cal(self)
+                            break
 
                     else:
                         print("\nPlease input positive values only.")
@@ -202,9 +240,13 @@ class calculate:
                         if (((side1 + side2) > side3)   # check if the triangle is valid or not
                                 and ((side1 + side3) > side2)
                                 and ((side2 + side3) > side1)):
-                            isoscelesTriangle(side1And2, side3)
-                            calculate.cal(self)
-                            break       # loop until a valid triangle is entered
+                            if (menu == 3):
+                                return isoscelesTriangle(side1And2, side3)
+
+                            else:
+                                isoscelesTriangle(side1And2, side3)
+                                calculate.cal(self)
+                                break       # loop until a valid triangle is entered
 
                         else:
                             print("Your three sides do not make up a valid triangle.\nPlease try again.")   # let the user try again if not valid
@@ -226,17 +268,21 @@ class calculate:
 
                     if not(side1 < 0 or side2 < 0 or side3 < 0):
 
+
                         if ((((side1 * side1) + (side2 * side2)) == (side3 * side3)) # cheak if the three sides satisfy the Pythagora's Theorem
                                 or (((side1 * side1) + (side3 * side3)) == (side2 * side2))
                                 or (((side3 * side3) + (side2 * side2)) == (side1 * side1))):
 
-                            rightTriangle(side1, side2, side3)
-                            calculate.cal(self)# if yes, calculate the area and the perimeter
-                            break       # loop until the three sides make up a valid right triangle
+                            if (menu == 3):
+                                return rightTriangle(side1, side2, side3)
+
+                            else:
+                                rightTriangle(side1, side2, side3)
+                                calculate.cal(self)     # if yes, calculate the area and the perimeter
+                                break       # loop until the three sides make up a valid right triangle
 
                         else:
                             print("\nYour three sides do not make up a valid triangle.\nPlease try again.") # if not, ask the user to input again
-
                     else:
                         print("\nPlease input positive values only.")
 
@@ -257,7 +303,7 @@ class calculate:
                         if (((side1 + side2) > side3) # check if the three sides make up a valid triangle
                                 and ((side1 + side3) > side2)
                                 and ((side2 + side3) > side1)):
-                            normalTriangle(side1, side2, side3) # if yes, calculate the area and the perimeter
+                            return normalTriangle(side1, side2, side3) # if yes, calculate the area and the perimeter
                             calculate.cal(self)
                             break       # loop until the three sides make up a valid triangle
                         else:
@@ -289,9 +335,13 @@ class calculate:
                         print("\nYour angle cannot be greater than 180 degrees")
 
                     else:
-                        parallelogram(side1, side2, angle)
-                        calculate.cal(self)
-                        break
+                        if (menu == 3):
+                            return parallelogram(side1, side2, angle)
+
+                        else:
+                            parallelogram(side1, side2, angle)
+                            calculate.cal(self)
+                            break
 
                 else:
                     print("\nPlease input positive values only")
@@ -306,9 +356,13 @@ class calculate:
                         print("\nPlease input a number only")
 
                 if (side > 0):
-                    hexagon(side)
-                    calculate.cal(self)
-                    break
+                    if (menu == 3):
+                        return hexagon(side)
+
+                    else:
+                        hexagon(side)
+                        calculate.cal(self)
+                        break
                 else:
                     print("\nPlease input positive values only")
 
@@ -321,9 +375,9 @@ class calculate:
             print("\nPlease input a valid option")
             calculate.cal(self)
 
-class draw2d():
+class draw2d():     # the class that will perform the drawing of 2D shapes
 
-    def rectangle(self):
+    def rectangle(self):        # the function that will draw a rectangle
         side1 = int(input("\ninput the height of the rectangle : "))
         side2 = int(input("input the length of the rectangle : "))
         print("\n")
@@ -346,7 +400,7 @@ class draw2d():
             print(line)
             line = ""
 
-    def square(self):
+    def square(self):       # the function that will draw a square
         side = int(input("\ninput the side of the square : "))
         print("\n")
         i = 0
@@ -369,7 +423,7 @@ class draw2d():
             print(line)
             line = ""
 
-    def triangle(self):
+    def triangle(self):     # the function that will draw a triangle
         height = int(input("\ninput the height of the triangle : "))
         print("\n")
         i = height
@@ -400,7 +454,7 @@ class draw2d():
             j = 0
 
 
-    def parallelogram(self):
+    def parallelogram(self):        # the function that will draw a parallelogram
         side1 = int(input("\ninput the height of the parallelogram : "))
         side2 = int(input("input the length of the parallelogram : "))
         i = 0
@@ -435,7 +489,29 @@ class draw2d():
             n = side1 - i
             k = 0
 
-    def hexagon(self):
+    # I copied this directly so I cannot explain what this does
+    def circle(self):       # the function that will draw the hexagon
+        diameter = int(input("Enter the diameter of the circle : "))
+
+        radius = diameter / 2 - .5
+        r = (radius + .25) ** 2 + 1
+        r_min = (radius - 1) ** 2 + 1
+
+        result = ''
+
+        for i in range(diameter):
+            y = (i - radius) ** 2
+            for j in range(diameter):
+                x = (j - radius) ** 2
+                if r_min <= x + y <= r:
+                    result = result + '*  '
+                else:
+                    result = result + '   '
+            result = result + '\n'
+
+        print(result)
+
+    def hexagon(self):      # the function that will draw a hexagon
         side = int(input("\ninput the side of the hexagon : "))
         print("\n")
         i = 0
@@ -489,8 +565,8 @@ class draw2d():
             line = ""
             s -= 2
 
-    def draw(self):
-        print("\n1.Squres"  # let the user choose one of the shapes
+    def draw(self):     # the function that will call all the drawing functions
+        print("\n1.Squares"  # let the user choose one of the shapes
               "\n2.Rectangles"
               "\n3.Circles"
               "\n4.Triangles"
@@ -511,7 +587,7 @@ class draw2d():
                 break
 
             elif (category == 3):
-                print("We are still working on it")
+                draw2d.circle(self)
                 break
 
             elif (category == 4):
@@ -533,27 +609,53 @@ class draw2d():
             else:
                 print("Please input a valid option.\n")
 
+class compound():
+    def compound_calculate(self):       # the function that will perform the calculation of the compund shapes
+        print("\nPleaes choose 2 shapes and we will calculate the total area and parameter for you.")
+        total_area = 0
+        total_parameter = 0
+
+        for i in range(2):      # there will be only two times as it is only a two-compound
+            lst = calculate.cal(self)
+            for n in range(len(lst)):
+                if (n == 0):
+                    total_area += lst[n]        # first one is the area
+                else:
+                    total_parameter += lst[n]       # second one is the parameter
+
+        print("\nThe total area for the two shapes is",round(total_area, 3), "cm^2"
+              "\nThe total parameter for the two shapes is",round(total_parameter, 3), "cm")
+
+
 
 class execute:
     def exe(self):
-        print("\n1.Calculate the area and the perimeter\n"
+        global menu
+        print("\n1.Calculate the area and the perimeter of 2D shapes\n"
               "2.Draw 2D and 3D shapes\n"
-              "3.Exit\n")
+              "3.Calculate the area and the perimeter of the compound shapes\n"
+              "4.Calculate the area and the perimeter of 3D shapes\n"
+              "5.Exit\n")
 
         while (True):  # check the input is an integer or not and loop until an integer is entered
             try:
-                category = int(input("Please select a category:"))
+                menu = int(input("Please select a category:"))
                 break
             except:
                 print("Please input a number only")
 
-        if (category == 1):
+        if (menu == 1):
             calculate().cal()
 
-        elif (category == 2):
+        elif (menu == 2):
             draw2d.draw(self)
+            exit(0)
 
-        elif (category == 3):
+        elif (menu == 3):
+            compound.compound_calculate(self)
+            exit(0)
+
+        elif (menu == 5):
             print("\nBye")
             exit(0)
 
