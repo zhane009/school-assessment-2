@@ -548,7 +548,7 @@ class calculate:
 
 
 
-class draw2d():     # the class that will perform the drawing of 2D shapes
+class draw():     # the class that will perform the drawing of shapes
 
     def rectangle(self):        # the function that will draw a rectangle
         side1 = int(input("\ninput the height of the rectangle : "))
@@ -738,7 +738,7 @@ class draw2d():     # the class that will perform the drawing of 2D shapes
             line = ""
             s -= 2
 
-    def draw(self):     # the function that will call all the drawing functions
+    def draw2d(self):     # the function that will call all the drawing functions
         print("\n1.Squares"  # let the user choose one of the shapes
               "\n2.Rectangles"
               "\n3.Circles"
@@ -752,27 +752,27 @@ class draw2d():     # the class that will perform the drawing of 2D shapes
             category = int(input("Please select a shape : "))
 
             if (category == 1):
-                draw2d.square(self)
+                draw.square(self)
                 break
 
             elif (category == 2):
-                draw2d.rectangle(self)
+                draw.rectangle(self)
                 break
 
             elif (category == 3):
-                draw2d.circle(self)
+                draw.circle(self)
                 break
 
             elif (category == 4):
-                draw2d.triangle(self)
+                draw.triangle(self)
                 break
 
             elif (category == 5):
-                draw2d.parallelogram(self)
+                draw.parallelogram(self)
                 break
 
             elif (category == 6):
-                draw2d.hexagon(self)
+                draw.hexagon(self)
                 break
 
             elif (category == 7):
@@ -781,6 +781,34 @@ class draw2d():     # the class that will perform the drawing of 2D shapes
 
             else:
                 print("Please input a valid option.\n")
+
+    def cube(self):
+        h = int(input("Enter the length : ")) * 2
+        j = d = int(h / 4)
+        q, e, u, p, k = "| \n+/"
+        w = e * d
+        s = p + '-' * h + p
+        i = ''
+        o = e + w + s + u
+        v = q + e * h + q
+        while j: o += e * j + k + e * h + k + e * (d - j) + q + u;j -= 1;i += v + e * j + k + u
+        print(o + s + w + q + u + (v + w + q + u) * (d - 1) + v + w + p + u + i + s)
+
+    def draw3d(self):
+        print("1. Cube\n"
+              "2. Cylinder\n"
+              "3. Pyramid.\n")
+
+        while (True):
+            try:
+                category = int(input("Please select a shape: "))
+                break
+
+            except:
+                print("Please input a number only.\n")
+
+        if (category == 1):
+            draw.cube(self)
 
 class compound():
     def compound_calculate(self):       # the function that will perform the calculation of the compund shapes
@@ -807,7 +835,7 @@ class execute:
         print("\n1.Calculate the area and the perimeter of 2D shapes\n"
               "2.Draw 2D and 3D shapes\n"
               "3.Calculate the area and the perimeter of the compound shapes\n"
-              "4.Calculate the area and the perimeter of 3D shapes\n"
+              "4.Calculate the area and the surface area of 3D shapes\n"
               "5.Exit\n")
 
         while (True):  # check the input is an integer or not and loop until an integer is entered
@@ -821,8 +849,27 @@ class execute:
             calculate().cal2d()
 
         elif (menu == 2):
-            draw2d.draw(self)
-            exit(0)
+            print("1. 2D shapes.\n"
+                  "2. 3D shapes.\n")
+            while (True):
+                while (True):
+                    try:
+                        category = int(input("Please select a category: "))
+                        break
+
+                    except:
+                        print("Please input a number only.\n")
+
+                if (category == 1):
+                    draw.draw2d(self)
+                    exit(0)
+
+                elif (category == 2):
+                    draw.draw3d(self)
+                    exit(0)
+
+                else:
+                    print("Please input a valid option.\n")
 
         elif (menu == 3):
             compound.compound_calculate(self)
