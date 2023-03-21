@@ -868,20 +868,31 @@ class draw():     # the class that will perform the drawing of shapes
             draw.cube(self)
 
     def draw3d(self):
+
         print("1. Cube\n"
               "2. Cylinder\n"
-              "3. Pyramid.\n")
+              "3. Pyramid.\n"
+              "4. Return to main menu.\n")
 
         while (True):
-            try:
-                category = int(input("Please select a shape: "))
+            while (True):
+                try:
+                    category = int(input("Please select a shape: "))
+                    break
+
+                except:
+                    print("Please input a number only.\n")
+
+            if (category == 1):
+                draw.cube(self)
                 break
 
-            except:
-                print("Please input a number only.\n")
+            elif (category == 4):
+                execute.exe()
+                break
 
-        if (category == 1):
-            draw.cube(self)
+            else:
+                print("Please input a valid option.\n")
 
 class compound():
     def compound_calculate(self):       # the function that will perform the calculation of the compund shapes
