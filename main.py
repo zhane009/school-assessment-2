@@ -357,9 +357,13 @@ class calculate:
                         if (((side1 + side2) > side3) # check if the three sides make up a valid triangle
                                 and ((side1 + side3) > side2)
                                 and ((side2 + side3) > side1)):
-                            return normalTriangle(side1, side2, side3) # if yes, calculate the area and the perimeter
-                            calculate.cal2d(self)
-                            break       # loop until the three sides make up a valid triangle
+                            if (menu == 3):
+                                return normalTriangle(side1, side2, side3) # if yes, calculate the area and the perimeter
+
+                            else:
+                                normalTriangle(side1, side2, side3)
+                                calculate.cal2d(self)
+                                break       # loop until the three sides make up a valid triangle
                         else:
                             print("\nThe three sides you entered do not make up a valid triangle.\nPlease try again.") # if not, ask the user to input again
 
@@ -556,248 +560,272 @@ class draw():     # the class that will perform the drawing of shapes
             side2 = int(input("input the length of the rectangle : "))
             print("\n")
 
-        except:
-            print("Please input a number only")
-            draw.rectangle(self)
-
-        if (side1 > 0 and side2 > 0):
-            i = 0
-            n = 0
-            line = ""
-            while (i < side1):
-                while (n < side2):
-                    if ((i == 0) or (i == side1 -1)):
-                        line += "*  "
-
-                    elif ((n == 0) or (n == side2 - 1)):
-                        line += "*  "
-
-                    else:
-                        line += "   "
-                    n += 1
+            if (side1 > 0 and side2 > 0):
+                i = 0
                 n = 0
-                i += 1
-                print(line)
                 line = ""
+                while (i < side1):      # loop through the height
+                    while (n < side2):      # loop through the length
+                        if ((i == 0) or (i == side1 - 1)):      # if they are the first or the last line
+                            line += "*  "       # fill the line with *s
 
-        else:
-            print("Pleaase input positive values")
+                        elif ((n == 0) or (n == side2 - 1)):
+                            line += "*  "       # add * to the first or the last row of the lines other than the first and the last
+
+                        else:
+                            line += "   "       # fill the middle part with white space
+                        n += 1      # increment the length
+                    n = 0   # reset the length so that it can run again
+                    i += 1      # increment the height
+                    print(line)     # print the line
+                    line = ""       # reset the line
+
+            else:
+                print("Pleaase input positive values")
+                draw.rectangle(self)
+
+        except:
+            print("Please input an integer number only")
             draw.rectangle(self)
+
+
 
     def square(self):       # the function that will draw a square
         try:
             side = int(input("\ninput the side of the square : "))
             print("\n")
+            if (side > 0):
+                i = 0
+                n = 0
+                line = ""
+                while (i < side):       # first loop through the height
+                    while (n < side):       # loop through the length
+                        if ((i == 0) or (i == side - 1)):           # if they are the first and the last line
+                            line += "*  "       # fill the line with *s
+
+                        elif ((n == 0) or (n == side - 1)):     # if they are the first and the last column of other lines
+                            line += "*  "       # add the * to the first or the last column of the shape
+
+                        else:
+                            line += "   "       # use only white spaces for the middle part of the other lines
+
+                        n += 1      # increment the length
+                    n = 0       # after exiting the length loop, reset the value of n to 0 so that it can restart
+                    i += 1      # increment the height
+                    print(line)     # print out the line
+                    line = ""       # reset the line
+
+            else:
+                print("Please input a positive value.\n")
+                draw.square(self)
 
         except:
-            print("Please input a number only.")
+            print("Please input an integer number only.")
             draw.square(self)
 
-        if (side > 0):
-            i = 0
-            n = 0
-            line = ""
-            while (i < side):
-                while (n < side):
-                    if ((i == 0) or (i == side - 1)):
-                        line += "*  "
 
-                    elif ((n == 0) or (n == side - 1)):
-                        line += "*  "
 
-                    else:
-                        line += "   "
-
-                    n += 1
-                n = 0
-                i += 1
-                print(line)
-                line = ""
-
-        else:
-            print("Please input a positive value.\n")
-            draw.square(self)
 
     def triangle(self):     # the function that will draw a triangle
         try:
             height = int(input("\ninput the height of the triangle : "))
             print("\n")
+
+            if (height > 0):
+                i = height
+                n = height
+                j = 0
+                line = ""
+
+
+                while (i > 0):      # loop through the height
+                    # for the white space in front of each row
+                    # this loop's looping times will increase each time the mother loop is done
+                    while (n > i):
+                        line += "   "
+                        n -= 1
+
+                    # for the #s that will make up the triangle
+                    # this loop's looping times will decrease each time the mother loop is done
+                    while (j < i):
+                        if (i == height):       # if it is the first line, fill the line with #s
+                            line += "#  "
+
+                        elif ((j == 0) or (j == i - 1)):        # if not, fill only the first and the last column with #s
+                            line += "#  "
+
+                        else:       # fill the middle parts with white space
+                            line += "   "
+                        j += 1
+
+                    print(line)     # print the line
+                    line = ""       # reset
+                    i -= 1      # minus one from height
+                    n = height      # reset n so that it can loop again
+                    j = 0       # reset j so that it can loop again
+
+            else:
+                print("Please input a positive value.")
+                draw.triangle(self)
+
         except:
             print("Please input a number only.")
             draw.triangle(self)
 
-        if (height > 0):
-            i = height
-            n = height
-            j = 0
-            line = ""
 
-            while (i > 0):
-                while (n > i):
-                    line += "   "
-                    n -= 1
-
-                while (j < i):
-                    if (i == height):
-                        line += "#  "
-
-                    elif ((j == 0) or (j == i - 1)):
-                        line += "#  "
-
-                    else:
-                        line += "   "
-                    j += 1
-
-                print(line)
-                line = ""
-                i -= 1
-                n = height
-                j = 0
-
-        else:
-            print("Please input a positive value.")
-            draw.triangle(self)
 
     def parallelogram(self):        # the function that will draw a parallelogram
         try:
             side1 = int(input("\ninput the height of the parallelogram : "))
             side2 = int(input("input the length of the parallelogram : "))
 
-        except:
-            print("Please input a number only.\n")
-            draw.parallelogram(self)
-
-        if (side1 > 0 and side2 > 0):
-            i = 0
-            j = 0
-            n = side1
-            k = 0
-            m = side1
-            line = ""
-
-
-            while (i < side1):
-                while (n > 0):
-                    while (k < n):
-                        line += "   "
-                        k += 1
-                    n -= 1
-                while (j < side2):
-                    if (i == 0) or (i == side1 - 1):
-                        line += "#  "
-
-                    elif (j == 0) or (j == side2 - 1):
-                        line += "#  "
-
-                    else:
-                        line += "   "
-                    j += 1
-
-                print(line)
-                line = ""
+            if (side1 > 0 and side2 > 0):
+                i = 0
                 j = 0
-                i += 1
-                n = side1 - i
+                n = side1
                 k = 0
-        else:
-            print("Please input a positive value.")
+                m = side1
+                line = ""
+
+                while (i < side1):      # loop through the height
+                    # for the white spaces in front of each row
+                    # this loop's looping times will decrease each time the mother loop is done
+                    while (n > 0):
+                        while (k < n):
+                            line += "   "
+                            k += 1
+                        n -= 1
+
+                    # for the #s that will make up the shape
+                    while (j < side2):
+                        if (i == 0) or (i == side1 - 1):        # fill the first and the last row with #s
+                            line += "#  "
+
+                        elif (j == 0) or (j == side2 - 1):      # fill the first and last column of other rows
+                            line += "#  "
+
+                        else:
+                            line += "   "       # fill the middle parts with white spaces
+                        j += 1
+
+                    print(line)
+                    line = ""       # reset the variables so that the loop can go again
+                    j = 0
+                    i += 1
+                    n = side1 - i       # white spaces in front of each row needs to decrease with each row
+                    k = 0
+            else:
+                print("Please input a positive value.")
+                draw.parallelogram(self)
+
+        except:
+            print("Please input an integer number only.\n")
             draw.parallelogram(self)
+
+
 
     # I copied this directly so I cannot explain what this does
     def circle(self):       # the function that will draw the hexagon
         try:
             diameter = int(input("Enter the diameter of the circle : "))
+            if (diameter > 0):
+                radius = diameter / 2 - .5
+                r = (radius + .25) ** 2 + 1
+                r_min = (radius - 1) ** 2 + 1
+
+                result = ''
+
+                for i in range(diameter):
+                    y = (i - radius) ** 2
+                    for j in range(diameter):
+                        x = (j - radius) ** 2
+                        if r_min <= x + y <= r:
+                            result = result + '*  '
+                        else:
+                            result = result + '   '
+                    result = result + '\n'
+
+                print(result)
+
+            else:
+                print("Please input a positive value.")
+                draw.circle(self)
 
         except:
-            print("Please input a number only.\n")
+            print("Please input an integer number only.\n")
             draw.circle(self)
 
 
-        if  (diameter > 0):
-            radius = diameter / 2 - .5
-            r = (radius + .25) ** 2 + 1
-            r_min = (radius - 1) ** 2 + 1
 
-            result = ''
-
-            for i in range(diameter):
-                y = (i - radius) ** 2
-                for j in range(diameter):
-                    x = (j - radius) ** 2
-                    if r_min <= x + y <= r:
-                        result = result + '*  '
-                    else:
-                        result = result + '   '
-                result = result + '\n'
-
-            print(result)
-
-        else:
-            print("Please input a positive value.")
-            draw.circle(self)
     def hexagon(self):      # the function that will draw a hexagon
         try:
             side = int(input("\ninput the side of the hexagon : "))
             print("\n")
 
+
+            # even though I did this myself, even I don't understand this anymore.
+            # it was a spurt of a moment and somehow a hexagon is produced.
+            if (side > 0):
+                i = 0
+                j = side
+                n = side
+                if (side > 4):
+                    s = (side * 2) + (side - 4)
+                elif (side < 4):
+                    s = (side * 2) - (4 - side)
+                else:
+                    s = (side * 2)
+                line = ""
+
+                while (i < side):
+                    while (j > i):
+                        line += "   "
+                        j -= 1
+
+                    while (n > 0):
+                        if (i == 0):
+                            line += "*  "
+
+                        elif (n == 1) or (n == (side) + (2 * i)):
+                            line += "*  "
+
+                        else:
+                            line += "   "
+                        n -= 1
+
+                    i += 1
+                    j = side
+                    n = (side) + (2 * i)
+                    print(line)
+                    line = ""
+
+                for m in range(1, side):
+                    for h in range(0, m + 1):
+                        line += "   "
+
+                    for k in range(0, s):
+                        if (k == 0) or (k == s - 1):
+                            line += "*  "
+
+                        elif (m == side - 1):
+                            line += "*  "
+
+                        else:
+                            line += "   "
+
+                    print(line)
+                    line = ""
+                    s -= 2
+
+            else:
+                print("Please input a positive value.")
+
         except:
-            print("Please input a number only.")
+            print("Please input an integer number only.")
             draw.hexagon(self)
 
-        if (side > 0):
-            i = 0
-            j = side
-            n = side
-            if (side > 4):
-                s = (side * 2) + (side - 4)
-            elif (side < 4):
-                s = (side * 2) - (4 - side)
-            else:
-                s = (side * 2)
-            line = ""
 
-            while (i < side):
-                while (j > i):
-                    line += "   "
-                    j -= 1
 
-                while (n > 0):
-                    if (i == 0):
-                        line += "*  "
-
-                    elif (n == 1) or (n == (side) + (2 * i)):
-                        line += "*  "
-
-                    else:
-                        line += "   "
-                    n -= 1
-
-                i += 1
-                j = side
-                n = (side) + (2 * i)
-                print(line)
-                line = ""
-
-            for m in range(1, side):
-                for h in range(0, m + 1):
-                    line += "   "
-
-                for k in range(0, s):
-                    if (k == 0) or (k == s - 1):
-                        line += "*  "
-
-                    elif (m == side - 1):
-                        line += "*  "
-
-                    else:
-                        line += "   "
-
-                print(line)
-                line = ""
-                s -= 2
-
-        else:
-            print("Please input a positive value.")
 
     def draw2d(self):     # the function that will call all the drawing functions
         print("\n1.Squares"  # let the user choose one of the shapes
@@ -847,25 +875,27 @@ class draw():     # the class that will perform the drawing of shapes
         try:
             a = int(input("Enter the length : "))
 
+            if (a > 0):
+                h = a * 2
+                j = d = int(h / 4)
+                q, e, u, p, k = "| \n+/"
+                w = e * d
+                s = p + '-' * h + p
+                i = ''
+                o = e + w + s + u
+                v = q + e * h + q
+                while j: o += e * j + k + e * h + k + e * (d - j) + q + u;j -= 1;i += v + e * j + k + u
+                print(o + s + w + q + u + (v + w + q + u) * (d - 1) + v + w + p + u + i + s)
+
+            else:
+                print("Please input a positive number.\n")
+                draw.cube(self)
+
+
         except:
-            print("Please input a number only.\n")
+            print("Please input an integer number only.\n")
             draw.cube(self)
 
-        if (a > 0):
-            h = a * 2
-            j = d = int(h / 4)
-            q, e, u, p, k = "| \n+/"
-            w = e * d
-            s = p + '-' * h + p
-            i = ''
-            o = e + w + s + u
-            v = q + e * h + q
-            while j: o += e * j + k + e * h + k + e * (d - j) + q + u;j -= 1;i += v + e * j + k + u
-            print(o + s + w + q + u + (v + w + q + u) * (d - 1) + v + w + p + u + i + s)
-
-        else:
-            print("Please input a positive number.\n")
-            draw.cube(self)
 
     def draw3d(self):
 
@@ -887,6 +917,12 @@ class draw():     # the class that will perform the drawing of shapes
                 draw.cube(self)
                 break
 
+            elif (category == 2):
+                print("Sorry this shape is currently not available.\n Please select another one.\n")
+
+            elif (category == 3):
+                print("Sorry this shape is currently not available.\n Please select another one.\n")
+
             elif (category == 4):
                 execute.exe()
                 break
@@ -900,16 +936,24 @@ class compound():
         total_area = 0
         total_parameter = 0
 
-        for i in range(2):      # there will be only two times as it is only a two-compound
-            lst = calculate.cal2d(self)
-            for n in range(len(lst)):
-                if (n == 0):
-                    total_area += lst[n]        # first one is the area
-                else:
-                    total_parameter += lst[n]       # second one is the parameter
+        while (True):
+            try:
+                for i in range(2):   # there will be only two times as it is only a two-compound
+                    lst = calculate.cal2d(self)
+                    for n in range(len(lst)):
+                        if (n == 0):
+                            total_area += lst[n]        # first one is the area
+                        else:
+                            total_parameter += lst[n]       # second one is the parameter
 
-        print("\nThe total area for the two shapes is",round(total_area, 3), "cm^2"
-              "\nThe total parameter for the two shapes is",round(total_parameter, 3), "cm")
+
+                print("\nThe total area for the two shapes is",round(total_area, 3), "cm^2"
+                      "\nThe total parameter for the two shapes is",round(total_parameter, 3), "cm")
+                break
+
+            except:
+                print("You have to choose both valid inputs.\nPlease try again.")
+
 
 
 
@@ -946,26 +990,24 @@ class execute:
 
                 if (category == 1):
                     draw.draw2d(self)
-                    exit(0)
+                    break
 
                 elif (category == 2):
                     draw.draw3d(self)
-                    exit(0)
+                    break
 
                 else:
                     print("Please input a valid option.\n")
 
         elif (menu == 3):
             compound.compound_calculate(self)
-            exit(0)
 
         elif (menu == 4):
             calculate.cal3d(self)
-            exit(0)
+
 
         elif (menu == 5):
             print("\nBye")
-            exit(0)
 
         else:       # check if the entered value is valid and
             print("\nPlease input a valid option\n")
