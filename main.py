@@ -1,5 +1,4 @@
 import math
-import os
 import time
 
 # menu = the main menu that the user chooses as the program is required to loop based on what the user chooses
@@ -433,7 +432,6 @@ class calculate:
             print("\nPlease input a valid option")
             calculate.cal2d(self)
 
-
     def cal3d(self):
         print("1. Square Cube\n"
               "2. Rectangle Cube\n"
@@ -549,8 +547,6 @@ class calculate:
         else:
             print("Please input a valid number.\n")
             calculate.cal3d(self)
-
-
 
 class draw():     # the class that will perform the drawing of shapes
 
@@ -672,8 +668,6 @@ class draw():     # the class that will perform the drawing of shapes
             print("Please input a number only.")
             draw.triangle(self)
 
-
-
     def parallelogram(self):        # the function that will draw a parallelogram
         try:
             side1 = int(input("\ninput the height of the parallelogram : "))
@@ -721,8 +715,6 @@ class draw():     # the class that will perform the drawing of shapes
         except:
             print("Please input an integer number only.\n")
             draw.parallelogram(self)
-
-
 
     # I copied this directly so I cannot explain what this does
     def circle(self):       # the function that will draw the hexagon
@@ -823,9 +815,6 @@ class draw():     # the class that will perform the drawing of shapes
         except:
             print("Please input an integer number only.")
             draw.hexagon(self)
-
-
-
 
     def draw2d(self):     # the function that will call all the drawing functions
         print("\n1.Squares"  # let the user choose one of the shapes
@@ -953,9 +942,6 @@ class compound():
 
             except:
                 print("You have to choose both valid inputs.\nPlease try again.")
-
-
-
 
 class execute:
     def exe(self):
