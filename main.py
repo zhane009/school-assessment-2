@@ -5,7 +5,7 @@ import time
 menu = 0
 
 # declare the functions for all the area and perimeter calculations
-def square(side):       # the functio that will calculate the area and the perimeter of the square
+def square(side):       # the function that will calculate the area and the perimeter of the square
     area = side * side
     perimeter = side * 4
 
@@ -16,8 +16,7 @@ def square(side):       # the functio that will calculate the area and the perim
         print("Area is", round(area, 3), "cm^2")
         print("Perimeter is", perimeter, "cm")
 
-
-def rectangle(side1, side2):        # the functio that will calculate the area and the perimeter of the rectangle
+def rectangle(side1, side2):        # the function that will calculate the area and the perimeter of the rectangle
     area = side1 * side2
     perimeter = (side1 * 2) + (side2 * 2)
 
@@ -28,7 +27,7 @@ def rectangle(side1, side2):        # the functio that will calculate the area a
         print("Area is", round(area, 3), "cm^2")
         print("Perimeter is", perimeter, "cm")
 
-def circle(radius):     # the functio that will calculate the area and the perimeter of the circle
+def circle(radius):     # the function that will calculate the area and the perimeter of the circle
     area = math.pi * radius * radius
     perimeter = 2 * math.pi * radius
 
@@ -39,7 +38,7 @@ def circle(radius):     # the functio that will calculate the area and the perim
         print("Area is", round(area, 3), "cm^2")
         print("Perimeter is", perimeter, "cm")
 
-def equilateralTriangle(side):      # the functio that will calculate the area and the perimeter of the equilateral triangle
+def equilateralTriangle(side):      # the function that will calculate the area and the perimeter of the equilateral triangle
     area = 0.25 * (math.sqrt(side * 3)) * (math.sqrt(side)) * (math.sqrt(side)) * (math.sqrt(side))
     perimeter = side * 3
 
@@ -66,8 +65,7 @@ def isoscelesTriangle(side1And2, side3):        # the function that will calcula
         print("Area is", round(area, 3), "cm^2")
         print("Perimeter is", perimeter, "cm")
 
-
-def rightTriangle(side1, side2, side3):     # the functio that will calculate the area and the perimeter of the right triangle
+def rightTriangle(side1, side2, side3):     # the function that will calculate the area and the perimeter of the right triangle
 
     area = 0.25 * (math.sqrt(side1 + side2 + side3)) \
            * (math.sqrt(side1 + side2 - side3)) \
@@ -83,8 +81,7 @@ def rightTriangle(side1, side2, side3):     # the functio that will calculate th
         print("Area is", round(area, 3), "cm^2")
         print("Perimeter is", perimeter, "cm")
 
-
-def normalTriangle(side1, side2, side3):        # the functio that will calculate the area and the perimeter of the normal triangle
+def normalTriangle(side1, side2, side3):        # the function that will calculate the area and the perimeter of the normal triangle
     area = 0.25 * (math.sqrt(side1 + side2 + side3)) \
                * (math.sqrt(side1 + side2 - side3)) \
                * (math.sqrt(side1 - side2 + side3)) \
@@ -99,7 +96,7 @@ def normalTriangle(side1, side2, side3):        # the functio that will calculat
         print("Area is", round(area, 3), "cm^2")
         print("Perimeter is", perimeter, "cm")
 
-def parallelogram(side1, side2, angle):     # the functio that will calculate the area and the perimeter of the parallelogram
+def parallelogram(side1, side2, angle):     # the function that will calculate the area and the perimeter of the parallelogram
     area = side1 * side2 * math.sin(math.radians(angle))
     perimeter = (side1 * 2) + (side2 * 2)
 
@@ -110,7 +107,7 @@ def parallelogram(side1, side2, angle):     # the functio that will calculate th
         print("Area is", round(area, 3), "cm^2")
         print("Perimeter is", perimeter, "cm")
 
-def hexagon(side):      # the functio that will calculate the area and the perimeter of the hexagon
+def hexagon(side):      # the function that will calculate the area and the perimeter of the hexagon
     area = 3 * (math.sqrt(3)) * side * side / 2
     perimeter = side * 6
 
@@ -121,41 +118,40 @@ def hexagon(side):      # the functio that will calculate the area and the perim
         print("Area is", round(area, 3), "cm^2")
         print("Perimeter is", perimeter, "cm")
 
-def squareCube(side):
+def squareCube(side):       # the function that will calculate the area and the volume of the square cube
     area = 6 * side * side
     volume = side * side * side
 
     print("The surface area of the cube is", round(area, 3), "cm^2")
     print("The volume of the cube is", round(volume, 3), "cm^3")
 
-def rectangleCube(length, height, thickness):
+def rectangleCube(length, height, thickness):       # the function that will calculate the area and the volume of the rectangle cube
     area = (2 * length * height) + (2 * height * thickness) + (2 * length * thickness)
     volume = length * height * thickness
 
     print("The surface area of the cube is", round(area, 3), "cm^2")
     print("The volume of the cube is", round(volume, 3), "cm^3")
 
-def sphere(raduis):
+def sphere(raduis):     # the function that will calculate the area and the volume of the sphere
     area = 4 * math.pi * raduis * raduis
     volume = 4 / 3 *  math.pi * raduis * raduis * raduis
 
     print("The surface area of the sphere is", round(area, 3), "cm^2")
     print("The volume of the sphere is", round(volume, 3), "cm^3")
 
-def cylinder(radius, height):
+def cylinder(radius, height):       # the function that will calculate the area and the volume of the cylinder
     area = (2 * math.pi * radius * radius) + (2 * math.pi * radius * height)
     volume = math.pi * radius * radius * height
 
     print("The surface area of the cylinder is", round(area, 3), "cm^2")
     print("The volume of the cylinder is", round(volume, 3), "cm^3")
 
-def pyramid(base, height, one_face_length):
+def pyramid(base, height, one_face_length):     # the function that will calculate the area and the volume of the pyramid
     area = (2 * base * one_face_length) + (base * base)
     volume = 1 / 3 * base * base * height
 
     print("The surface area of the pyramid is", round(area, 3), "cm^2")
     print("The volume of the pyramid is", round(volume, 3), "cm^3")
-
 
 # the class that will perform all the main non-math things
 class calculate:
@@ -218,7 +214,6 @@ class calculate:
 
                 else:
                     print("\nPlease input positive values only")
-
 
         elif (category == 3):
             while (True):
@@ -338,7 +333,6 @@ class calculate:
                             print("\nYour three sides do not make up a valid triangle.\nPlease try again.") # if not, ask the user to input again
                     else:
                         print("\nPlease input positive values only.")
-
 
             elif (type == 4):
                 while (True):
@@ -865,16 +859,16 @@ class draw():     # the class that will perform the drawing of shapes
             a = int(input("Enter the length : "))
 
             if (a > 0):
-                h = a * 2
-                j = d = int(h / 4)
-                q, e, u, p, k = "| \n+/"
-                w = e * d
-                s = p + '-' * h + p
+                b = a * 2
+                c = d = int(b / 4)
+                f, e, g, h, k = "| \n+/"
+                l = e * d
+                m = h + '-' * b + h
                 i = ''
-                o = e + w + s + u
-                v = q + e * h + q
-                while j: o += e * j + k + e * h + k + e * (d - j) + q + u;j -= 1;i += v + e * j + k + u
-                print(o + s + w + q + u + (v + w + q + u) * (d - 1) + v + w + p + u + i + s)
+                o = e + l + m + g
+                p = f + e * b + f
+                while c: o += e * c + k + e * b + k + e * (d - c) + f + g;c -= 1;i += p + e * c + k + g
+                print(o + m + l + f + g + (p + l + f + g) * (d - 1) + p + l + h + g + i + m)
 
             else:
                 print("Please input a positive number.\n")
