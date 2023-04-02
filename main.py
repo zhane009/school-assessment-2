@@ -454,6 +454,7 @@ class calculate:
 
                 if (side > 0):
                     squareCube(side)
+                    calculate.cal3d(self)
                     break
 
                 else:
@@ -474,6 +475,7 @@ class calculate:
 
                 if (length > 0 and height > 0 and thickness > 0):
                     rectangleCube(length, height, thickness)
+                    calculate.cal3d(self)
                     break
 
                 else:
@@ -491,6 +493,7 @@ class calculate:
 
                 if (radius > 0):
                     sphere(radius)
+                    calculate.cal3d(self)
                     break
 
                 else:
@@ -509,6 +512,7 @@ class calculate:
 
                 if (radius > 0 and height > 0):
                     cylinder(radius, height)
+                    calculate.cal3d(self)
                     break
 
                 else:
@@ -528,6 +532,7 @@ class calculate:
 
                 if (base > 0 and height > 0 and one_face_length > 0):
                     pyramid(base, height, one_face_length)
+                    calculate.cal3d(self)
                     break
 
                 else:
@@ -820,31 +825,41 @@ class draw():     # the class that will perform the drawing of shapes
               "\n7.Back to main menu")
 
         while (True):
-
-            category = int(input("Please select a shape : "))
+            while (True):
+                try:
+                    category = int(input("Please select a shape : "))
+                    break
+                except:
+                    print("Please input a number only.\n")
 
             if (category == 1):
                 draw.square(self)
+                draw.draw2d(self)
                 break
 
             elif (category == 2):
                 draw.rectangle(self)
+                draw.draw2d(self)
                 break
 
             elif (category == 3):
                 draw.circle(self)
+                draw.draw2d(self)
                 break
 
             elif (category == 4):
                 draw.triangle(self)
+                draw.draw2d(self)
                 break
 
             elif (category == 5):
                 draw.parallelogram(self)
+                draw.draw2d(self)
                 break
 
             elif (category == 6):
                 draw.hexagon(self)
+                draw.draw2d(self)
                 break
 
             elif (category == 7):
@@ -898,6 +913,7 @@ class draw():     # the class that will perform the drawing of shapes
 
             if (category == 1):
                 draw.cube(self)
+                draw.draw3d(self)
                 break
 
             elif (category == 2):
@@ -932,6 +948,7 @@ class compound():
 
                 print("\nThe total area for the two shapes is",round(total_area, 3), "cm^2"
                       "\nThe total parameter for the two shapes is",round(total_parameter, 3), "cm")
+                execute.exe()
                 break
 
             except:
